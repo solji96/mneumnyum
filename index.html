@@ -24,40 +24,41 @@
         body { font-family: 'Pretendard', sans-serif; }
     </style>
 </head>
-<body class="bg-[#E0F2FE] text-m-dark min-h-screen py-12 px-4 flex justify-center items-center">
+<body class="bg-[#F0F9FF] text-m-dark min-h-screen py-8 px-4 flex justify-center items-center">
 
-    <div class="w-full max-w-md bg-white/95 backdrop-blur-md rounded-[36px] shadow-2xl overflow-hidden p-8 space-y-6 border-2 border-sky-100">
+    <!-- 메인 카드 (말랑하고 포근한 버터 옐로우 톤 박스) -->
+    <div class="w-full max-w-md bg-[#FEFCE8] rounded-[36px] shadow-2xl overflow-hidden p-6 sm:p-8 space-y-6 border-2 border-yellow-200">
         
         <!-- 헤더 영역 -->
         <header class="text-center space-y-2">
-            <div class="inline-block bg-[#FEF9C3] text-amber-900 text-xs font-black px-4 py-1.5 rounded-full shadow-sm mb-1 border border-yellow-200">
+            <div class="inline-block bg-[#E0F2FE] text-sky-900 text-xs font-black px-4 py-1.5 rounded-full shadow-sm mb-1 border border-sky-200">
                 ✨ MMM, YUM! 편의점 생존 가이드
             </div>
-            <h1 class="text-3xl font-black text-m-dark flex items-center justify-center gap-2">
+            <h1 class="text-3xl font-black text-slate-900 flex items-center justify-center gap-2">
                 🥣 믐냠
             </h1>
-            <p id="today-date" class="text-xs text-sky-700 font-bold"></p>
+            <p id="today-date" class="text-xs text-amber-800 font-bold"></p>
             <p class="text-xs text-gray-500 leading-relaxed pt-1">
                 매일 날짜마다 다채롭게 쏟아지는 편의점 생존 조합,<br>오늘은 어떤 트렌디한 맛이 기다리고 있을까요?
             </p>
         </header>
 
-        <!-- 본문 메뉴 콘텐츠 영역 (버터 옐로우 포인트 박스 통일) -->
+        <!-- 본문 메뉴 콘텐츠 영역 (화이트와 버터 옐로우의 깔끔한 조화) -->
         <main class="space-y-4">
             
             <!-- 아침 맵 -->
-            <details class="bg-[#FEFCE8] rounded-3xl p-5 shadow-sm border border-yellow-200 group transition-all" open>
+            <details class="bg-white rounded-3xl p-5 shadow-sm border border-yellow-200 group transition-all" open>
                 <summary class="font-bold cursor-pointer flex justify-between items-center text-sm text-gray-700 select-none">
                     <span class="flex items-center gap-2">☀️ 모닝 프로틴 & 아침 맵</span>
                     <span class="text-xs text-amber-500 group-open:rotate-180 transition-transform font-bold">▼</span>
                 </summary>
-                <div class="mt-4 space-y-3 text-xs text-gray-600 border-t border-yellow-200 pt-3 leading-relaxed">
+                <div class="mt-4 space-y-3 text-xs text-gray-600 border-t border-yellow-100 pt-3 leading-relaxed">
                     <div>
                         <p class="font-bold text-gray-800">☀️ 주말 여유: 스위트 두유 & 반숙란 콤보 (약 4,200원)</p>
                         <p class="mt-1 text-gray-500">구성: 두유 + 부드러운 반숙란</p>
-                        <p class="mt-2 bg-white p-3 rounded-2xl text-gray-600 shadow-sm border border-yellow-100">
+                        <p class="mt-2 bg-[#FEFCE8] p-3 rounded-2xl text-gray-600 shadow-sm border border-yellow-200">
                             <strong>💡 다정한 추천 픽:</strong> 늦잠 잔 토요일 아침, 속 편하고 부드럽게.<br>
-                            <span class="text-amber-700 font-bold mt-1 inline-block">🛒 추천 편의점: 세븐일레븐 또는 CU</span>
+                            <span class="text-sky-700 font-bold mt-1 inline-block">🛒 추천 편의점: 세븐일레븐 또는 CU</span>
                         </p>
                         <p class="mt-1.5 italic text-gray-400">한 줄 평: 알람 없이 일어난 토요일 아침의 여유.</p>
                     </div>
@@ -65,27 +66,27 @@
             </details>
 
             <!-- 5천 원 저녁 & 야식 맵 -->
-            <details class="bg-[#FEFCE8] rounded-3xl p-5 shadow-sm border border-yellow-200 group transition-all" open>
+            <details class="bg-white rounded-3xl p-5 shadow-sm border border-yellow-200 group transition-all" open>
                 <summary class="font-bold cursor-pointer flex justify-between items-center text-sm text-gray-700 select-none">
                     <span class="flex items-center gap-2">💳 5천 원 미니멈 저녁 & 야식 맵</span>
                     <span class="text-xs text-amber-500 group-open:rotate-180 transition-transform font-bold">▼</span>
                 </summary>
-                <div class="mt-4 space-y-3 text-xs text-gray-600 border-t border-yellow-200 pt-3 leading-relaxed">
+                <div class="mt-4 space-y-3 text-xs text-gray-600 border-t border-yellow-100 pt-3 leading-relaxed">
                     <div>
                         <p class="font-bold text-gray-800">🌙 가벼운 저녁: 알뜰 백반 도시락 & 컵라면 콤보 (약 4,800원)</p>
                         <p class="mt-1 text-gray-500">구성: 3~4천원대 실속형 백반 도시락 + 작은 컵라면</p>
-                        <p class="mt-2 bg-white p-3 rounded-2xl text-gray-600 shadow-sm border border-yellow-100">
+                        <p class="mt-2 bg-[#FEFCE8] p-3 rounded-2xl text-gray-600 shadow-sm border border-yellow-200">
                             <strong>💡 꿀팁:</strong> 통신사 할인이나 제휴 카드를 쓰면 4천 원대로 쌀밥과 국물을 다 잡을 수 있어요.<br>
-                            <span class="text-amber-700 font-bold mt-1 inline-block">🛒 추천 편의점: CU (실속 백반 도시락 코너)</span>
+                            <span class="text-sky-700 font-bold mt-1 inline-block">🛒 추천 편의점: CU (실속 백반 도시락 코너)</span>
                         </p>
                     </div>
-                    <hr class="border-yellow-200 my-3">
+                    <hr class="border-yellow-100 my-3">
                     <div>
                         <p class="font-bold text-gray-800">🌙 야식 디펜스: 콘치즈 그라탕 & 탄산수 (약 4,800원)</p>
                         <p class="mt-1 text-gray-500">구성: 냉동 콘치즈 + 탄산수</p>
-                        <p class="mt-2 bg-white p-3 rounded-2xl text-gray-600 shadow-sm border border-yellow-100">
+                        <p class="mt-2 bg-[#FEFCE8] p-3 rounded-2xl text-gray-600 shadow-sm border border-yellow-200">
                             <strong>💡 다정한 추천 픽:</strong> 모짜렐라 치즈가 녹을 때까지 전자레인지에 1분 30초 돌려주세요.<br>
-                            <span class="text-amber-700 font-bold mt-1 inline-block">🛒 추천 편의점: GS25 (냉동 안주/간편식 코너)</span>
+                            <span class="text-sky-700 font-bold mt-1 inline-block">🛒 추천 편의점: GS25 (냉동 안주/간편식 코너)</span>
                         </p>
                         <p class="mt-1.5 italic text-gray-400">한 줄 평: 든든한 저녁부터 가벼운 야식까지 완벽한 5천 원 타협.</p>
                     </div>
@@ -93,18 +94,18 @@
             </details>
 
             <!-- 1만 원 저녁 맵 -->
-            <details class="bg-[#FEFCE8] rounded-3xl p-5 shadow-sm border border-yellow-200 group transition-all" open>
+            <details class="bg-white rounded-3xl p-5 shadow-sm border border-yellow-200 group transition-all" open>
                 <summary class="font-bold cursor-pointer flex justify-between items-center text-sm text-gray-700 select-none">
-                    <span class="flex items-center gap-2">🍱 1만 원 든든한 저녁 & 야식 맵</span>
+                    <span class="font-bold text-gray-800">🍱 1만 원 든든한 저녁 & 야식 맵</span>
                     <span class="text-xs text-amber-500 group-open:rotate-180 transition-transform font-bold">▼</span>
                 </summary>
-                <div class="mt-4 space-y-3 text-xs text-gray-600 border-t border-yellow-200 pt-3 leading-relaxed">
+                <div class="mt-4 space-y-3 text-xs text-gray-600 border-t border-yellow-100 pt-3 leading-relaxed">
                     <div>
                         <p class="font-bold text-gray-800">🍝 주말 만찬: 투움바 파스타 & 훈제 치킨 콤보 (약 9,800원)</p>
                         <p class="mt-1 text-gray-500">구성: 투움바 떡볶이/파스타 + 훈제 닭다리</p>
-                        <p class="mt-2 bg-white p-3 rounded-2xl text-gray-600 shadow-sm border border-yellow-100">
+                        <p class="mt-2 bg-[#FEFCE8] p-3 rounded-2xl text-gray-600 shadow-sm border border-yellow-200">
                             <strong>💡 꿀팁:</strong> 꾸덕한 투움바 소스에 닭다리 살을 발라서 콕 찍어 드세요.<br>
-                            <span class="text-amber-700 font-bold mt-1 inline-block">🛒 추천 편의점: GS25 또는 CU</span>
+                            <span class="text-sky-700 font-bold mt-1 inline-block">🛒 추천 편의점: GS25 또는 CU</span>
                         </p>
                         <p class="mt-1.5 italic text-gray-400">한 줄 평: 주말 밤, 가장 완벽하게 나를 대접하는 호화로운 야식.</p>
                     </div>
@@ -115,32 +116,32 @@
 
         <!-- 편의점별 요즘 핫한 디저트 맵 -->
         <section class="space-y-3">
-            <details class="bg-[#FEFCE8] rounded-3xl p-5 shadow-sm border border-yellow-200 group transition-all" open>
+            <details class="bg-white rounded-3xl p-5 shadow-sm border border-yellow-200 group transition-all" open>
                 <summary class="font-bold cursor-pointer flex justify-between items-center text-sm text-gray-700 select-none">
-                    <span class="flex items-center gap-2">🍰 편의점별 요즘 핫한 디저트 맵</span>
+                    <span class="font-bold text-gray-800">🍰 편의점별 요즘 핫한 디저트 맵</span>
                     <span class="text-xs text-amber-500 group-open:rotate-180 transition-transform font-bold">▼</span>
                 </summary>
-                <div class="mt-4 space-y-3 text-xs text-gray-600 border-t border-yellow-200 pt-3 leading-relaxed">
+                <div class="mt-4 space-y-3 text-xs text-gray-600 border-t border-yellow-100 pt-3 leading-relaxed">
                     <div>
                         <p class="font-bold text-gray-800">🏪 CU: 생크림 찹쌀떡 & 모찌 트렌드의 중심</p>
                         <p class="mt-0.5 text-gray-500">추천 픽: <strong class="text-gray-700">연세우유 생크림 찹쌀떡 & 쫀득 모찌 시리즈</strong></p>
-                        <p class="mt-2 text-[11px] text-amber-900 bg-white p-3 rounded-2xl shadow-sm border border-yellow-100">
+                        <p class="mt-2 text-[11px] text-amber-900 bg-[#FEFCE8] p-3 rounded-2xl shadow-sm border border-yellow-200">
                             💡 쫀득한 찹쌀 피 속에 가득 찬 생크림 조합! 살짝 얼려 먹으면 아이스크림처럼 즐길 수 있어요.
                         </p>
                     </div>
-                    <hr class="border-yellow-200 my-3">
+                    <hr class="border-yellow-100 my-3">
                     <div>
                         <p class="font-bold text-gray-800">🏪 GS25: 쫀득 모찌롤 & 트렌디 디저트</p>
                         <p class="mt-0.5 text-gray-500">추천 픽: <strong class="text-gray-700">이구동성 모찌롤 및 두바이 초콜릿 계열</strong></p>
-                        <p class="mt-2 text-[11px] text-amber-900 bg-white p-3 rounded-2xl shadow-sm border border-yellow-100">
+                        <p class="mt-2 text-[11px] text-amber-900 bg-[#FEFCE8] p-3 rounded-2xl shadow-sm border border-yellow-200">
                             💡 입에서 살살 녹는 쫀득한 식감의 모찌롤과 카다이프 페이스트가 들어간 트렌디한 디저트 라인업입니다.
                         </p>
                     </div>
-                    <hr class="border-yellow-200 my-3">
+                    <hr class="border-yellow-100 my-3">
                     <div>
                         <p class="font-bold text-gray-800">🏪 세븐일레븐: 프리미엄 베이커리 & 찹쌀 약과</p>
                         <p class="mt-0.5 text-gray-500">추천 픽: <strong class="text-gray-700">쫀득 약과 쿠키 & 베이커리 협업 디저트</strong></p>
-                        <p class="mt-2 text-[11px] text-amber-900 bg-white p-3 rounded-2xl shadow-sm border border-yellow-100">
+                        <p class="mt-2 text-[11px] text-amber-900 bg-[#FEFCE8] p-3 rounded-2xl shadow-sm border border-yellow-200">
                             💡 할매 입맛을 저격하는 쫀득한 약과 쿠키와 고급 베이커리 라인이 커피와 환상의 궁합입니다.
                         </p>
                     </div>
@@ -148,10 +149,10 @@
             </details>
         </section>
 
-        <!-- 쿠팡 파트너스 CTA 버튼 및 푸터 -->
-        <footer class="mt-8 text-center space-y-3">
+        <!-- 쿠팡 파트너스 CTA 버튼 및 푸터 (상큼한 파스텔 블루 포인트) -->
+        <footer class="mt-6 text-center space-y-3">
             <a href="https://your-coupang-partners-link.com" target="_blank" 
-               class="block w-full bg-[#FEF9C3] hover:bg-yellow-200 text-amber-950 font-black py-4 px-4 rounded-2xl shadow-md transition-all text-xs flex items-center justify-center gap-2 border border-yellow-300">
+               class="block w-full bg-[#E0F2FE] hover:bg-sky-200 text-sky-950 font-black py-4 px-4 rounded-2xl shadow-md transition-all text-xs flex items-center justify-center gap-2 border border-sky-300">
                 👉 추천 생존 템 최저가로 모아보기
             </a>
             <p class="text-[10px] text-gray-400 leading-tight">
