@@ -39,9 +39,9 @@
             </p>
         </header>
 
-        <!-- 본문 동적 데이터 렌더링 영역 -->
+        <!-- 본문 메뉴 렌더링 영역 -->
         <main class="space-y-4" id="menu-container">
-            <!-- 자바스크립트에 의해 날짜별 데이터가 자동으로 삽입됩니다 -->
+            <!-- 자바스크립트에 의해 날짜별/기본 데이터가 안전하게 렌더링됩니다 -->
         </main>
 
         <!-- 편의점별 요즘 핫한 디저트 맵 (모찌·찹쌀 트렌드 반영) -->
@@ -92,17 +92,16 @@
 
     </div>
 
-    <!-- 날짜별 자동 갱신 및 데이터베이스 로직 -->
+    <!-- 안전한 데이터 렌더링 스크립트 -->
     <script>
         const today = new Date();
         const month = today.getMonth() + 1;
-        const date = today.getDate(); // 오늘 날짜 (예: 24일)
+        const date = today.getDate();
         const days = ['일', '월', '화', '수', '목', '금', '토'];
         const dayName = days[today.getDay()];
         
         document.getElementById('today-date').innerText = `📅 ${month}월 ${date}일 (${dayName}) 오늘의 MMM, YUM! 맵`;
 
-        // 날짜별/기본 메뉴 데이터베이스 (여기서 언제든 자동 갱신 가능)
         const dateMenuDatabase = {
             24: { 
                 morning: { 
@@ -116,28 +115,4 @@
                     dinnerTitle: "🌙 가벼운 저녁: 알뜰 백반 도시락 & 컵라면 콤보 (약 4,800원)", 
                     dinnerDesc: "구성: 3~4천원대 실속형 백반 도시락 + 작은 컵라면", 
                     dinnerTip: "통신사 할인이나 제휴 카드를 쓰면 4천 원대로 쌀밥과 국물을 다 잡을 수 있어요.<br><span class='text-sky-600 font-semibold mt-1 inline-block'>🛒 추천 편의점: CU (실속 백반 도시락 코너)</span>",
-                    nightTitle: "🌙 야식 디펜스: 콘치즈 그라탕 & 탄산수 (약 4,800원)", 
-                    nightDesc: "구성: 냉동 콘치즈 + 탄산수", 
-                    nightTip: "모짜렐라 치즈가 녹을 때까지 전자레인지에 1분 30초 돌려주세요.<br><span class='text-sky-600 font-semibold mt-1 inline-block'>🛒 추천 편의점: GS25 (냉동 안주/간편식 코너)</span>",
-                    review: "한 줄 평: 든든한 저녁부터 가벼운 야식까지 완벽한 5천 원 타협."
-                },
-                dinner10k: { 
-                    title: "🍝 주말 만찬: 투움바 파스타 & 훈제 치킨 콤보 (약 9,800원)", 
-                    desc: "구성: 투움바 떡볶이/파스타 + 훈제 닭다리", 
-                    tip: "꾸덕한 투움바 소스에 닭다리 살을 발라서 콕 찍어 드세요.<br><span class='text-sky-600 font-semibold mt-1 inline-block'>🛒 추천 편의점: GS25 또는 CU</span>", 
-                    review: "한 줄 평: 주말 밤, 가장 완벽하게 나를 대접하는 호화로운 야식." 
-                }
-            },
-            default: {
-                morning: { 
-                    title: "☀️ 모닝 프로틴 세트 (약 4,700원)", 
-                    desc: "구성: 프로틴 음료 + 감동란", 
-                    tip: "셀렉스 스포츠 복숭아티맛 또는 삼립 감동란 조합.<br><span class='text-sky-600 font-semibold mt-1 inline-block'>🛒 추천 편의점: GS25 또는 CU</span>", 
-                    review: "한 줄 평: 아침에 최소한의 양심을 챙기는 루틴." 
-                },
-                dinner5k: { 
-                    title: "💳 [5천 원 미니멈 저녁 & 야식 맵]", 
-                    dinnerTitle: "🌙 가벼운 저녁: 알뜰 도시락 & 컵라면 콤보 (약 4,800원)", 
-                    dinnerDesc: "구성: 실속형 백반 도시락 + 작은 컵라면", 
-                    dinnerTip: "통신사 할인 적용 시 4천 원대로 쌀밥과 국물 해결.<br><span class='text-sky-600 font-semibold mt-1 inline-block'>🛒 추천 편의점: CU (실속 백반 도시락 코너)</span>",
-                    nightTitle: "🌙 야식 디펜스: 플레인 그릭요거트 & 바나나 (
+                    nightTitle: "🌙 야식 디펜스: 콘치즈 그라탕 & 탄산
