@@ -608,6 +608,13 @@ if (require.main === module) {
             }
             return;
         }
+        const requested = path.normalize(path.join(ROOT, decodeURIComponent(url.pathname)));
+        const extension = path.extname(requested);
+        const types = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8" };
+        if (requested.startsWith(ROOT) && types[extension] && fs.existsSync(requested) && fs.statSync(requested).isFile()) {
+            send(res, 200, fs.readFileSync(requested), types[extension]);
+            return;
+        }
         send(res, 200, fs.readFileSync(path.join(ROOT, "index.html")), "text/html; charset=utf-8");
     });
     server.listen(PORT, () => {

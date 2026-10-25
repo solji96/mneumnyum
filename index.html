@@ -81,30 +81,69 @@
 
     </div>
 
+    <script src="menu-seed.js"></script>
     <script>
         const SUPABASE_URL = "https://wtmblnhwvnmpjopcjvpo.supabase.co";
         const SUPABASE_KEY = "sb_publishable_vn-cZQ1Wi8thHFKDP6t5jQ_F15APSlB";
         const tipClass = "mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]";
         const marks = { CU: "🟢", GS25: "🔵", 세븐일레븐: "🟠", 이마트24: "🟡" };
-        const sections = {
+        const labels = {
             diet: ["1️⃣ 아침:", "2️⃣ 한 끼:", "3️⃣ 가벼운 저녁:", "4️⃣ 야식 대신:"],
             morning: ["1️⃣", "2️⃣"],
             light: ["🍽️ [저녁 1]", "🍽️ [저녁 2]", "🌙 [야식 1]", "🌙 [야식 2]"],
             hearty: ["🍽️ [저녁 1]", "🍽️ [저녁 2]", "🌙 [야식 1]", "🌙 [야식 2]"]
         };
+        const MENU_SEED = window.MENU_SEED || [];
 
         document.getElementById("today-date").textContent =
             `📅 오늘 날짜: ${new Date().toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "long", timeZone: "Asia/Seoul" })}`;
 
-        function sectionOf(row) {
-            const value = String(row.section || "").trim().toLowerCase();
-            if (sections[value] || value === "dessert") return value;
-            if (/다이어트|단백질/.test(value)) return "diet";
-            if (/모닝|아침/.test(value)) return "morning";
-            if (/디저트|간식/.test(value)) return "dessert";
-            if (/1만|만원|hearty/.test(value)) return "hearty";
-            if (/5천|오천|light|저녁|야식/.test(value)) return "light";
-            return "";
+        function seoulToday() {
+            const parts = new Intl.DateTimeFormat("en-US", {
+                timeZone: "Asia/Seoul",
+                year: "numeric",
+                month: "numeric",
+                day: "numeric"
+            }).formatToParts(new Date());
+            const read = (type) => Number(parts.find((part) => part.type === type).value);
+            const year = read("year");
+            const month = read("month");
+            const day = read("day");
+            const weekday = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", weekday: "short" })
+                .format(new Date(Date.UTC(year, month - 1, 1)));
+            const firstWeekday = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[weekday];
+            const untilMonday = (8 - firstWeekday) % 7;
+            const firstMonday = untilMonday === 0 ? 1 : untilMonday + 1;
+            const week = day < firstMonday ? 0 : 1 + Math.floor((day - firstMonday) / 7);
+            return { year, month, day, week };
+        }
+
+        function parseSection(value) {
+            const match = String(value || "").match(/^(diet|morning|light|hearty|dessert)#(\d+)$/);
+            if (!match) return null;
+            return { section: match[1], slot: Number(match[2]) };
+        }
+
+        function tipFor(pick) {
+            if (pick === "popular") return "신상이 없어서 베스트 상품으로 골랐습니다.";
+            if (pick === "fresh") return "공식 신상품입니다. 점포마다 없을 수 있습니다.";
+            if (pick === "best-new") return "공식 베스트 신상품입니다. 점포마다 없을 수 있습니다.";
+            return "공식 신상품입니다. 점포마다 없을 수 있습니다.";
+        }
+
+        function dietInfo(name) {
+            if (/맥플랜|뉴트리션/.test(name)) {
+                return { nutrition: "단백질 20g · 제로슈거 · 식이섬유 포뮬러", line: "식이섬유 함량 g는 포장 영양성분에서 확인하세요." };
+            }
+            if (/밸런스밀/.test(name)) return { nutrition: "단백질 20g 이상 · 통곡물 식이섬유 · 저당", line: "" };
+            if (/닭가슴살/.test(name) && /단호박/.test(name)) {
+                return { nutrition: "단백질은 닭가슴살 · 식이섬유는 단호박과 채소", line: "단백질·식이섬유 g는 포장지를 보는 것이 정확합니다." };
+            }
+            if (/여주/.test(name) && /닭가슴살/.test(name)) {
+                return { nutrition: "단백질은 닭가슴살·계란 · 식이섬유는 고구마와 채소", line: "" };
+            }
+            if (/샐러드|프로틴|닭가슴/.test(name)) return { nutrition: "", line: "단백질·식이섬유 g는 포장 영양성분에서 확인하세요." };
+            return { nutrition: "", line: "" };
         }
 
         function priceText(price) {
@@ -135,67 +174,132 @@
                 compose.className = "text-gray-500 text-[11px]";
                 compose.textContent = `구성: ${item.name} 1개`;
                 card.append(title, compose);
+                if (item.nutrition) {
+                    const nutrition = document.createElement("p");
+                    nutrition.className = "mt-1.5 text-[11px] font-semibold text-emerald-800";
+                    nutrition.textContent = item.nutrition;
+                    card.append(nutrition);
+                }
                 const tip = document.createElement("p");
                 tip.className = tipClass;
                 const tipLabel = document.createElement("strong");
                 tipLabel.textContent = "💡 오늘의 추천 꿀조합: ";
-                tip.append(tipLabel, document.createTextNode(`공식 신상품입니다. 점포마다 없을 수 있습니다.${item.store ? ` 🛒 ${item.store}` : ""}`));
+                tip.append(tipLabel, document.createTextNode(`${item.tip}${item.store ? ` 🛒 ${item.store}` : ""}`));
                 card.append(tip);
+                if (item.line) {
+                    const rule = document.createElement("hr");
+                    rule.className = "border-sky-100 my-1.5";
+                    const line = document.createElement("p");
+                    line.className = "text-[11px] text-gray-600";
+                    line.textContent = `한 줄 평: ${item.line}`;
+                    card.append(rule, line);
+                }
                 root.append(card);
             });
         }
 
-        function uniqueRows(rows) {
-            const seen = new Set();
-            const grouped = { diet: [], morning: [], light: [], hearty: [], dessert: [] };
-            const stores = new Set();
-            rows.forEach((row) => {
-                const section = sectionOf(row);
-                const name = String(row.name || "").trim();
-                if (!section || !name || !grouped[section]) return;
-                const store = String(row.store || "").trim();
-                const key = `${section}|${name}|${store}`;
-                if (seen.has(key)) return;
-                if (section === "dessert") {
-                    if (!store || stores.has(store)) return;
-                    stores.add(store);
-                } else if (grouped[section].length >= sections[section].length) {
-                    return;
-                }
-                seen.add(key);
-                grouped[section].push({ name, store, price: priceText(row.price) });
-            });
-            return grouped;
+        function card(item, label) {
+            const info = item.section === "diet" ? dietInfo(item.name) : { nutrition: "", line: item.pick === "best-new" ? "공식 신상품 랭킹에 있습니다." : "" };
+            const price = priceText(item.price);
+            return {
+                title: `${label} ${item.name}${price ? ` (${price})` : ""}`.trim(),
+                name: item.name,
+                store: item.store,
+                nutrition: info.nutrition,
+                line: info.line,
+                tip: tipFor(item.pick)
+            };
         }
 
-        function card(item, label) {
-            const heading = item.price ? `${label} ${item.name} (${item.price})` : `${label} ${item.name}`;
-            return { title: heading.trim(), name: item.name, store: item.store };
+        function picks() {
+            const map = new Map();
+            MENU_SEED.forEach((item) => map.set(`${item.section}|${item.slot}|${item.name}|${item.store}`, item.pick));
+            return map;
+        }
+
+        function scheduledRows(rows, today) {
+            const known = picks();
+            return rows.flatMap((row) => {
+                const parsed = parseSection(row.section);
+                if (!parsed) return [];
+                const wanted = parsed.section === "dessert" ? today.week : today.day;
+                if (parsed.slot !== wanted) return [];
+                return [{
+                    section: parsed.section,
+                    slot: parsed.slot,
+                    name: row.name,
+                    price: row.price,
+                    store: row.store,
+                    pick: row.pick || known.get(`${parsed.section}|${parsed.slot}|${row.name}|${row.store}`) || ""
+                }];
+            });
         }
 
         function render(rows) {
-            const grouped = uniqueRows(rows);
-            const month = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", month: "numeric" })
-                .formatToParts(new Date())
-                .find((part) => part.type === "month").value;
+            const today = seoulToday();
+            const grouped = { diet: [], morning: [], light: [], hearty: [], dessert: [] };
+            const seen = new Set();
+            scheduledRows(rows, today).forEach((item) => {
+                const key = `${item.section}|${item.name}|${item.store}`;
+                if (seen.has(key) || !grouped[item.section]) return;
+                seen.add(key);
+                grouped[item.section].push(item);
+            });
             document.getElementById("morning-title").textContent = `☀️ 모닝 베스트 신상 (${grouped.morning.length}종)`;
             document.getElementById("light-title").textContent = `💳 5천 원대 베스트 신상 (${grouped.light.length}종)`;
             document.getElementById("hearty-title").textContent = `💰 1만 원대 베스트 신상 (${grouped.hearty.length}종)`;
             document.getElementById("dessert-title").textContent = `🧁 베스트 신상 디저트 (${grouped.dessert.length}곳)`;
-            document.getElementById("dessert-week").textContent = `📅 ${month}월 베스트 신상`;
-            fill("diet-list", grouped.diet.map((item, index) => card(item, sections.diet[index])), "이번 달 베스트 신상 중에 단백질·식이섬유가 공개된 상품이 없습니다.");
-            fill("morning-list", grouped.morning.map((item, index) => card(item, sections.morning[index])), "이번 달 베스트 신상 중에 이 칸에 넣을 아침이 없습니다.");
-            fill("light-list", grouped.light.map((item, index) => card(item, sections.light[index])), "이번 달 베스트 신상 중에 이 칸에 넣을 5천 원대 메뉴가 없습니다.");
-            fill("hearty-list", grouped.hearty.map((item, index) => card(item, sections.hearty[index])), "이번 달 베스트 신상 중에 이 칸에 넣을 1만 원대 메뉴가 없습니다.");
-            fill("dessert-list", grouped.dessert.map((item) => card(item, `${marks[item.store] || "🧁"} [${item.store}]`)), "이번 주 칸에 넣을 베스트 신상 디저트가 없습니다.");
+            document.getElementById("dessert-week").textContent = `📅 ${today.month}월 베스트 신상`;
+            fill("diet-list", grouped.diet.map((item, index) => card(item, labels.diet[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 단백질·식이섬유가 공개된 상품이 없습니다.");
+            fill("morning-list", grouped.morning.map((item, index) => card(item, labels.morning[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 아침이 없습니다.");
+            fill("light-list", grouped.light.map((item, index) => card(item, labels.light[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 5천 원대 메뉴가 없습니다.");
+            fill("hearty-list", grouped.hearty.map((item, index) => card(item, labels.hearty[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 1만 원대 메뉴가 없습니다.");
+            fill("dessert-list", grouped.dessert.map((item) => card(item, `${marks[item.store] || "🧁"} [${item.store || "디저트"}]`)), "이번 주 칸에 넣을 베스트 신상 디저트가 없습니다.");
+        }
+
+        function localRows() {
+            return MENU_SEED.map((item) => ({
+                section: `${item.section}#${item.slot}`,
+                name: item.name,
+                price: item.price,
+                store: item.store,
+                pick: item.pick
+            }));
+        }
+
+        function saveSeed() {
+            const payload = MENU_SEED.map((item) => ({
+                section: `${item.section}#${item.slot}`,
+                name: item.name,
+                price: item.price,
+                store: item.store
+            }));
+            const headers = {
+                apikey: SUPABASE_KEY,
+                Authorization: `Bearer ${SUPABASE_KEY}`,
+                "Content-Type": "application/json",
+                Prefer: "return=minimal"
+            };
+            const batches = [];
+            for (let index = 0; index < payload.length; index += 80) batches.push(payload.slice(index, index + 80));
+            return batches.reduce((chain, batch) => chain.then(() => fetch(`${SUPABASE_URL}/rest/v1/menus`, {
+                method: "POST",
+                headers,
+                body: JSON.stringify(batch)
+            })), Promise.resolve());
         }
 
         fetch(`${SUPABASE_URL}/rest/v1/menus?select=section,name,price,store&order=id.asc`, {
             headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
         })
             .then((response) => response.json())
-            .then((rows) => render(Array.isArray(rows) ? rows : []))
-            .catch(() => render([]));
+            .then((rows) => {
+                const list = Array.isArray(rows) ? rows : [];
+                const saved = list.some((row) => parseSection(row.section));
+                if (!saved) saveSeed();
+                render(saved ? list : localRows());
+            })
+            .catch(() => render(localRows()));
     </script>
 </body>
 </html>
