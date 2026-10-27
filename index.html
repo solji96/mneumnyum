@@ -71,7 +71,7 @@
         </details>
 
         <section class="bg-[#FEFCE8] border border-yellow-200 rounded-3xl p-4 text-center shadow-sm space-y-1.5">
-            <a href="https://www.coupang.com" target="_blank" class="inline-block w-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs py-2.5 px-4 rounded-2xl transition shadow-sm">
+            <a id="coupang-link" href="https://www.coupang.com" target="_blank" class="inline-block w-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs py-2.5 px-4 rounded-2xl transition shadow-sm">
                 👉 추천 생존 템 최저가로 모아보기
             </a>
             <p class="text-[9px] text-slate-400 whitespace-nowrap tracking-tight">
@@ -255,6 +255,24 @@
             fill("light-list", grouped.light.map((item, index) => card(item, labels.light[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 5천 원대 메뉴가 없습니다.");
             fill("hearty-list", grouped.hearty.map((item, index) => card(item, labels.hearty[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 1만 원대 메뉴가 없습니다.");
             fill("dessert-list", grouped.dessert.map((item) => card(item, `${marks[item.store] || "🧁"} [${item.store || "디저트"}]`)), "이번 주 칸에 넣을 베스트 신상 디저트가 없습니다.");
+            updateCoupangLink(grouped);
+        }
+
+        function updateCoupangLink(grouped) {
+            const names = [];
+            const seen = new Set();
+            ["diet", "morning", "light", "hearty", "dessert"].forEach((section) => {
+                grouped[section].forEach((item) => {
+                    const name = String(item.name || "").replace(/\s+/g, " ").trim();
+                    if (!name || seen.has(name)) return;
+                    seen.add(name);
+                    names.push(name);
+                });
+            });
+            const link = document.getElementById("coupang-link");
+            link.href = names.length
+                ? `https://www.coupang.com/np/search?component=&q=${encodeURIComponent(names.join(" "))}&channel=user`
+                : "https://www.coupang.com";
         }
 
         function localRows() {
