@@ -85,7 +85,6 @@
     <script>
         const SUPABASE_URL = "https://wtmblnhwvnmpjopcjvpo.supabase.co";
         const SUPABASE_KEY = "sb_publishable_vn-cZQ1Wi8thHFKDP6t5jQ_F15APSlB";
-        const tipClass = "mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]";
         const marks = { CU: "🟢", GS25: "🔵", 세븐일레븐: "🟠", 이마트24: "🟡" };
         const labels = {
             diet: ["1️⃣ 아침:", "2️⃣ 한 끼:", "3️⃣ 가벼운 저녁:", "4️⃣ 야식 대신:"],
@@ -122,13 +121,6 @@
             const match = String(value || "").match(/^(diet|morning|light|hearty|dessert)#(\d+)$/);
             if (!match) return null;
             return { section: match[1], slot: Number(match[2]) };
-        }
-
-        function tipFor(pick) {
-            if (pick === "popular") return "신상이 없어서 베스트 상품으로 골랐습니다.";
-            if (pick === "fresh") return "공식 신상품입니다. 점포마다 없을 수 있습니다.";
-            if (pick === "best-new") return "공식 베스트 신상품입니다. 점포마다 없을 수 있습니다.";
-            return "공식 신상품입니다. 점포마다 없을 수 있습니다.";
         }
 
         function dietInfo(name) {
@@ -180,12 +172,20 @@
                     nutrition.textContent = item.nutrition;
                     card.append(nutrition);
                 }
-                const tip = document.createElement("p");
-                tip.className = tipClass;
-                const tipLabel = document.createElement("strong");
-                tipLabel.textContent = "💡 오늘의 추천 꿀조합: ";
-                tip.append(tipLabel, document.createTextNode(`${item.tip}${item.store ? ` 🛒 ${item.store}` : ""}`));
-                card.append(tip);
+                const note = document.createElement("div");
+                note.className = "mt-1.5 px-2.5 py-2 rounded-xl bg-sky-50/50 border border-sky-100 text-[11px] leading-5 tracking-tight text-slate-700 space-y-1";
+                const pickLine = document.createElement("p");
+                const pickLabel = document.createElement("strong");
+                pickLabel.className = "font-semibold text-slate-800";
+                pickLabel.textContent = "💡 MD's Pick: ";
+                pickLine.append(pickLabel, document.createTextNode("공식 신상품입니다. 점포마다 없을 수 있습니다."));
+                const storeLine = document.createElement("p");
+                const storeLabel = document.createElement("strong");
+                storeLabel.className = "font-semibold text-slate-800";
+                storeLabel.textContent = "🛒 추천 편의점: ";
+                storeLine.append(storeLabel, document.createTextNode(item.store || ""));
+                note.append(pickLine, storeLine);
+                card.append(note);
                 if (item.line) {
                     const rule = document.createElement("hr");
                     rule.className = "border-sky-100 my-1.5";
@@ -206,8 +206,7 @@
                 name: item.name,
                 store: item.store,
                 nutrition: info.nutrition,
-                line: info.line,
-                tip: tipFor(item.pick)
+                line: info.line
             };
         }
 
