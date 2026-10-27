@@ -86,6 +86,7 @@
         const SUPABASE_URL = "https://wtmblnhwvnmpjopcjvpo.supabase.co";
         const SUPABASE_KEY = "sb_publishable_vn-cZQ1Wi8thHFKDP6t5jQ_F15APSlB";
         const marks = { CU: "🟢", GS25: "🔵", 세븐일레븐: "🟠", 이마트24: "🟡" };
+        const PET_PRODUCT = /반려동물|강아지|고양이|애견|애묘|펫/;
         const labels = {
             diet: ["1️⃣ 아침:", "2️⃣ 한 끼:", "3️⃣ 가벼운 저녁:", "4️⃣ 야식 대신:"],
             morning: ["1️⃣", "2️⃣"],
@@ -173,7 +174,7 @@
                     card.append(nutrition);
                 }
                 const note = document.createElement("div");
-                note.className = "mt-1.5 px-2.5 py-2 rounded-xl bg-sky-50/50 border border-sky-100 text-[11px] leading-5 tracking-tight text-slate-700 space-y-1";
+                note.className = "mt-1.5 px-2 py-1.5 rounded-xl bg-sky-50/50 border border-sky-100 text-[10px] leading-4 tracking-tight text-slate-700 space-y-0.5";
                 const pickLine = document.createElement("p");
                 const pickLabel = document.createElement("strong");
                 pickLabel.className = "font-semibold text-slate-800";
@@ -220,7 +221,7 @@
             const known = picks();
             return rows.flatMap((row) => {
                 const parsed = parseSection(row.section);
-                if (!parsed) return [];
+                if (!parsed || PET_PRODUCT.test(String(row.name || ""))) return [];
                 const wanted = parsed.section === "dessert" ? today.week : today.day;
                 if (parsed.slot !== wanted) return [];
                 return [{
