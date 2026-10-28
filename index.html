@@ -256,7 +256,34 @@
             fill("light-list", grouped.light.map((item, index) => card(item, labels.light[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 5천 원대 메뉴가 없습니다.");
             fill("hearty-list", grouped.hearty.map((item, index) => card(item, labels.hearty[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 1만 원대 메뉴가 없습니다.");
             fill("dessert-list", grouped.dessert.map((item) => card(item, `${marks[item.store] || "🧁"} [${item.store || "디저트"}]`)), "이번 주 칸에 넣을 베스트 신상 디저트가 없습니다.");
-            document.getElementById("coupang-link").href = `https://link.coupang.com/re/AFFHOME?lptag=${COUPANG_PARTNER_ID}`;
+            document.getElementById("coupang-link").href = coupangSearchHref(grouped);
+        }
+
+        function coupangSearchHref(grouped) {
+            const partnerId = String(COUPANG_PARTNER_ID || "").trim();
+            const home = `https://link.coupang.com/re/AFFHOME?lptag=${partnerId}`;
+            if (!/^AF\d+$/.test(partnerId)) return home;
+            const skip = /음료|커피|라떼|에이드|콤부차|요거트|주스|워터|생수|탄산|콜라|사이다/;
+            const clean = (item) => {
+                const name = String(item?.name || "").replace(/\s+/g, " ").trim().replace(/^[^()]{1,15}\)/, "").trim();
+                if (!name || skip.test(name)) return "";
+                return name;
+            };
+            const picked = [];
+            const takeFirst = (section) => {
+                for (const item of grouped[section] || []) {
+                    const name = clean(item);
+                    if (!name || picked.includes(name)) continue;
+                    picked.push(name);
+                    return;
+                }
+            };
+            takeFirst("hearty");
+            if (picked.length < 2) takeFirst("light");
+            if (!picked.length) takeFirst("diet");
+            if (!picked.length) takeFirst("morning");
+            if (!picked.length) return home;
+            return `https://link.coupang.com/re/AFFSRP?lptag=${partnerId}&pageKey=${encodeURIComponent(picked.join(" "))}`;
         }
 
         function localRows() {
