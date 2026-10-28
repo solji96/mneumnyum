@@ -85,6 +85,7 @@
     <script>
         const SUPABASE_URL = "https://wtmblnhwvnmpjopcjvpo.supabase.co";
         const SUPABASE_KEY = "sb_publishable_vn-cZQ1Wi8thHFKDP6t5jQ_F15APSlB";
+        const COUPANG_PARTNER_ID = "";
         const marks = { CU: "🟢", GS25: "🔵", 세븐일레븐: "🟠", 이마트24: "🟡" };
         const PET_PRODUCT = /반려동물|강아지|고양이|애견|애묘|펫/;
         const labels = {
@@ -270,9 +271,15 @@
                 });
             });
             const link = document.getElementById("coupang-link");
-            link.href = names.length
-                ? `https://www.coupang.com/np/search?component=&q=${encodeURIComponent(names.join(" "))}&channel=user`
-                : "https://www.coupang.com";
+            const keyword = names.join(" ");
+            const partnerId = String(COUPANG_PARTNER_ID || "").trim();
+            if (keyword && /^AF\d+$/.test(partnerId)) {
+                link.href = `https://link.coupang.com/re/AFFSRP?lptag=${partnerId}&pageKey=${encodeURIComponent(keyword)}`;
+            } else if (keyword) {
+                link.href = `https://www.coupang.com/np/search?q=${encodeURIComponent(keyword)}`;
+            } else {
+                link.href = "https://www.coupang.com";
+            }
         }
 
         function localRows() {
