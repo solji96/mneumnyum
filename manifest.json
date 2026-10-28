@@ -1,0 +1,30 @@
+{
+  "name": "믐냠 | MMM, YUM! 편의점 생존 가이드",
+  "short_name": "믐냠",
+  "description": "오늘 먹을 편의점 한 끼를 골라 주는 생존 가이드",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFF3CD",
+  "theme_color": "#FFF3CD",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

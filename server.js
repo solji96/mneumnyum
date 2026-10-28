@@ -610,7 +610,12 @@ if (require.main === module) {
         }
         const requested = path.normalize(path.join(ROOT, decodeURIComponent(url.pathname)));
         const extension = path.extname(requested);
-        const types = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8" };
+        const types = {
+            ".html": "text/html; charset=utf-8",
+            ".js": "text/javascript; charset=utf-8",
+            ".json": "application/json; charset=utf-8",
+            ".png": "image/png"
+        };
         if (requested.startsWith(ROOT) && types[extension] && fs.existsSync(requested) && fs.statSync(requested).isFile()) {
             send(res, 200, fs.readFileSync(requested), types[extension]);
             return;
