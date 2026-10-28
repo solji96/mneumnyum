@@ -70,7 +70,10 @@
             <div id="dessert-list" class="mt-3 space-y-3 text-xs"></div>
         </details>
 
-        <section class="bg-[#FEFCE8] border border-yellow-200 rounded-3xl p-4 text-center shadow-sm">
+        <section class="bg-[#FEFCE8] border border-yellow-200 rounded-3xl p-4 text-center shadow-sm space-y-1.5">
+            <a id="coupang-link" href="https://link.coupang.com/re/AFFSDP?lptag=AF8196387&pageKey=9509930958&itemId=1052228937&vendorItemId=90950003988" target="_blank" rel="noopener noreferrer" class="inline-block w-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm leading-5 py-2.5 px-4 rounded-2xl transition shadow-sm">
+                잠시만요! 최저가 비교하러 가기 🏃‍♀️✨
+            </a>
             <p class="text-[9px] text-slate-400 whitespace-nowrap tracking-tight">
                 이 포스팅은 쿠팡 파트너스 활동의 일환으로, 소정의 수수료를 제공받습니다.
             </p>
@@ -83,20 +86,7 @@
         const SUPABASE_URL = "https://wtmblnhwvnmpjopcjvpo.supabase.co";
         const SUPABASE_KEY = "sb_publishable_vn-cZQ1Wi8thHFKDP6t5jQ_F15APSlB";
         const COUPANG_PARTNER_ID = "AF8196387";
-        const COUPANG_PRODUCTS = [
-            { title: "해태제과 연양갱 50g 10개", keys: ["연양갱"], pageKey: "8243615531", itemId: "3516584", vendorItemId: "3005867070" },
-            { title: "티젠 콤부차 요구르트 30입", keys: ["콤부차"], pageKey: "8510817701", itemId: "24635324286", vendorItemId: "91646279296" },
-            { title: "그릭데이 그릭요거트 시그니처", keys: ["요거트", "그릭"], pageKey: "5463245022", itemId: "8368941558", vendorItemId: "75656677270" },
-            { title: "올곧 바바김밥", keys: ["김밥", "유부"], pageKey: "6661512532", itemId: "21474551425", vendorItemId: "88528821082" },
-            { title: "하림 치킨너겟", keys: ["너겟"], pageKey: "4567751809", itemId: "5575412259", vendorItemId: "72874737915" },
-            { title: "곰곰 건강한 샐러드 도시락", keys: ["샐러드"], pageKey: "293454508", itemId: "926514679", vendorItemId: "5302343324" },
-            { title: "CJ 햇반 백미밥 210g 24개", keys: ["솥반", "햇반", "영양밥", "약밥"], pageKey: "9509930958", itemId: "1052228937", vendorItemId: "90950003988" },
-            { title: "오뚜기 굴진짬뽕", keys: ["짬뽕"], pageKey: "6859913680", itemId: "17905183968", vendorItemId: "85067933252" },
-            { title: "삼양라면", keys: ["라면"], pageKey: "7460637047", itemId: "19445316265", vendorItemId: "84994380049" },
-            { title: "오뚜기 짜슐랭", keys: ["우동", "국수", "크림면", "면"], pageKey: "6480900046", itemId: "17905187275", vendorItemId: "85067936267" },
-            { title: "크라운 빅파이 딸기", keys: ["파이"], pageKey: "106013", itemId: "19421898980", vendorItemId: "86533357952" },
-            { title: "풀무원 얇은피 김치만두", keys: ["만두"], pageKey: "6079766075", itemId: "857429087", vendorItemId: "5175888151" }
-        ];
+        const COUPANG_LINK = `https://link.coupang.com/re/AFFSDP?lptag=${COUPANG_PARTNER_ID}&pageKey=9509930958&itemId=1052228937&vendorItemId=90950003988`;
         const marks = { CU: "🟢", GS25: "🔵", 세븐일레븐: "🟠", 이마트24: "🟡" };
         const PET_PRODUCT = /반려동물|강아지|고양이|애견|애묘|펫/;
         const labels = {
@@ -109,6 +99,7 @@
 
         document.getElementById("today-date").textContent =
             `📅 오늘 날짜: ${new Date().toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "long", timeZone: "Asia/Seoul" })}`;
+        document.getElementById("coupang-link").href = COUPANG_LINK;
 
         function seoulToday() {
             const parts = new Intl.DateTimeFormat("en-US", {
@@ -199,15 +190,6 @@
                 storeLine.append(storeLabel, document.createTextNode(item.store || ""));
                 note.append(pickLine, storeLine);
                 card.append(note);
-                if (item.coupang) {
-                    const link = document.createElement("a");
-                    link.href = item.coupang.href;
-                    link.target = "_blank";
-                    link.rel = "noopener noreferrer";
-                    link.className = "mt-1.5 inline-block w-full text-center bg-sky-500 hover:bg-sky-600 text-white font-bold text-[10px] py-1.5 px-2 rounded-xl";
-                    link.textContent = `쿠팡에서 보기 · ${item.coupang.title}`;
-                    card.append(link);
-                }
                 if (item.line) {
                     const rule = document.createElement("hr");
                     rule.className = "border-sky-100 my-1.5";
@@ -220,25 +202,6 @@
             });
         }
 
-        function matchCoupang(name) {
-            const cleaned = String(name || "").replace(/^[^()]{1,15}\)/, "");
-            let best = null;
-            let bestScore = 0;
-            COUPANG_PRODUCTS.forEach((product) => {
-                product.keys.forEach((key) => {
-                    if (cleaned.includes(key) && key.length > bestScore) {
-                        best = product;
-                        bestScore = key.length;
-                    }
-                });
-            });
-            if (!best) return null;
-            return {
-                title: best.title,
-                href: `https://link.coupang.com/re/AFFSDP?lptag=${COUPANG_PARTNER_ID}&pageKey=${best.pageKey}&itemId=${best.itemId}&vendorItemId=${best.vendorItemId}`
-            };
-        }
-
         function card(item, label) {
             const info = item.section === "diet" ? dietInfo(item.name) : { nutrition: "", line: item.pick === "best-new" ? "공식 신상품 랭킹에 있습니다." : "" };
             const price = priceText(item.price);
@@ -247,8 +210,7 @@
                 name: item.name,
                 store: item.store,
                 nutrition: info.nutrition,
-                line: info.line,
-                coupang: matchCoupang(item.name)
+                line: info.line
             };
         }
 
