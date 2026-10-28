@@ -71,7 +71,7 @@
         </details>
 
         <section class="bg-[#FEFCE8] border border-yellow-200 rounded-3xl p-4 text-center shadow-sm space-y-1.5">
-            <a id="coupang-link" href="https://link.coupang.com/re/AFFHOME?lptag=AF8196387" target="_blank" class="inline-block w-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs py-2.5 px-4 rounded-2xl transition shadow-sm">
+            <a id="coupang-link" href="https://link.coupang.com/re/AFFSDP?lptag=AF8196387&pageKey=9509930958&itemId=1052228937&vendorItemId=90950003988" target="_blank" class="inline-block w-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs py-2.5 px-4 rounded-2xl transition shadow-sm">
                 👉 추천 생존 템 최저가로 모아보기
             </a>
             <p class="text-[9px] text-slate-400 whitespace-nowrap tracking-tight">
@@ -86,6 +86,7 @@
         const SUPABASE_URL = "https://wtmblnhwvnmpjopcjvpo.supabase.co";
         const SUPABASE_KEY = "sb_publishable_vn-cZQ1Wi8thHFKDP6t5jQ_F15APSlB";
         const COUPANG_PARTNER_ID = "AF8196387";
+        const COUPANG_PRODUCT_LINK = `https://link.coupang.com/re/AFFSDP?lptag=${COUPANG_PARTNER_ID}&pageKey=9509930958&itemId=1052228937&vendorItemId=90950003988`;
         const marks = { CU: "🟢", GS25: "🔵", 세븐일레븐: "🟠", 이마트24: "🟡" };
         const PET_PRODUCT = /반려동물|강아지|고양이|애견|애묘|펫/;
         const labels = {
@@ -98,6 +99,7 @@
 
         document.getElementById("today-date").textContent =
             `📅 오늘 날짜: ${new Date().toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "long", timeZone: "Asia/Seoul" })}`;
+        document.getElementById("coupang-link").href = COUPANG_PRODUCT_LINK;
 
         function seoulToday() {
             const parts = new Intl.DateTimeFormat("en-US", {
@@ -256,34 +258,6 @@
             fill("light-list", grouped.light.map((item, index) => card(item, labels.light[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 5천 원대 메뉴가 없습니다.");
             fill("hearty-list", grouped.hearty.map((item, index) => card(item, labels.hearty[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 1만 원대 메뉴가 없습니다.");
             fill("dessert-list", grouped.dessert.map((item) => card(item, `${marks[item.store] || "🧁"} [${item.store || "디저트"}]`)), "이번 주 칸에 넣을 베스트 신상 디저트가 없습니다.");
-            document.getElementById("coupang-link").href = coupangSearchHref(grouped);
-        }
-
-        function coupangSearchHref(grouped) {
-            const partnerId = String(COUPANG_PARTNER_ID || "").trim();
-            const home = `https://link.coupang.com/re/AFFHOME?lptag=${partnerId}`;
-            if (!/^AF\d+$/.test(partnerId)) return home;
-            const skip = /음료|커피|라떼|에이드|콤부차|요거트|주스|워터|생수|탄산|콜라|사이다/;
-            const clean = (item) => {
-                const name = String(item?.name || "").replace(/\s+/g, " ").trim().replace(/^[^()]{1,15}\)/, "").trim();
-                if (!name || skip.test(name)) return "";
-                return name;
-            };
-            const picked = [];
-            const takeFirst = (section) => {
-                for (const item of grouped[section] || []) {
-                    const name = clean(item);
-                    if (!name || picked.includes(name)) continue;
-                    picked.push(name);
-                    return;
-                }
-            };
-            takeFirst("hearty");
-            if (picked.length < 2) takeFirst("light");
-            if (!picked.length) takeFirst("diet");
-            if (!picked.length) takeFirst("morning");
-            if (!picked.length) return home;
-            return `https://link.coupang.com/re/AFFSRP?lptag=${partnerId}&pageKey=${encodeURIComponent(picked.join(" "))}`;
         }
 
         function localRows() {
