@@ -4,18 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🥣 믐냠 | MMM, YUM! 편의점 생존 가이드</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#F0F9FF] text-slate-800 min-h-screen py-8 px-4 flex justify-center items-center text-xs relative">
+
+    <!-- 메인 컨텐츠 -->
     <div class="w-full max-w-md bg-[#F0F9FF] rounded-[36px] shadow-2xl overflow-hidden p-5 sm:p-6 space-y-4">
         
+        <!-- 헤더 영역 -->
         <header class="text-center space-y-1.5">
             <span class="inline-block bg-amber-100 text-amber-800 text-[11px] font-semibold px-3 py-0.5 rounded-full">
                 ✨ MMM, YUM! 편의점 생존 가이드
             </span>
             <h1 class="text-2xl font-black text-sky-900 tracking-tight">🥣 믐냠</h1>
-            <p class="text-xs text-slate-600">냉장고는 비었는데 나가기는 귀찮을 때, 오늘 가장 맛있고 스마트한 편의점 한 끼!</p>
-            <div id="today-date" class="text-[11px] font-bold text-sky-700 bg-sky-100 py-1 px-2.5 rounded-xl inline-block mt-1">📅 불러오는 중...</div>
+            <p class="text-xs text-slate-600">
+                냉장고는 비었는데 나가기는 귀찮을 때, 오늘 가장 맛있고 스마트한 편의점 한 끼!
+            </p>
+            <div id="today-date" class="text-[11px] font-bold text-sky-700 bg-sky-100 py-1 px-2.5 rounded-xl inline-block mt-1">
+                📅 불러오는 중...
+            </div>
         </header>
 
         <section class="bg-amber-50 border border-amber-200 rounded-2xl p-3 text-[11px] text-amber-900 space-y-0.5">
@@ -24,108 +32,112 @@
             <p>• <strong>디저트 코너:</strong> 한 주간 가장 핫했던 신상과 품절 대란템 위주로 매주 월요일에 찾아옵니다.</p>
         </section>
 
-        <!-- 전체 오픈(open) 상태로 변경 -->
-        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group" open>
+        <!-- 1. 아침 맵 (처음엔 닫힘) -->
+        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
                 <span class="flex items-center gap-1.5">☀️ 모닝 프로틴 & 아침 맵 (2종)</span>
                 <span class="transition group-open:rotate-180 text-[10px]">▼</span>
             </summary>
             <div class="mt-3 space-y-3 text-xs">
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">1️⃣ [다이어터 픽] 닭가슴살 소시지 & 흑임자 프로틴 (7,300원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: GS25 CJ 닭가슴살소시지 80g + CJ 맥플랜 뉴트리션 프로틴 흑임자</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 다정한 추천 픽:</strong> 소시지로 단백질을 채우고, 흑임자 프로틴은 단백질 20g에 제로슈거, 식이섬유 포뮬러예요. 🛒 GS25</p>
+                    <p class="font-bold text-gray-800">1️⃣ [다이어터 픽] 닭가슴살 소시지 & 무당 두유</p>
+                    <p class="text-gray-500 text-[11px]">구성: 매콤 닭가슴살 소시지 바 + 아몬드 음료(언스위트)</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 다정한 추천 픽:</strong> 탄수화물은 줄이고 단백질은 꽉 채운 완벽한 체중 관리 모닝 세트. 🛒 세븐일레븐</p>
                 </div>
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">2️⃣ 든든 출근: 페퍼로니 햄 치아바타 (4,500원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: CU 페퍼로니햄치아바타 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 다정한 추천 픽:</strong> 페퍼로니랑 햄이 겹친 치아바타로, 배고픈 수요일 아침을 제대로 채워요. 🛒 CU</p>
+                    <p class="font-bold text-gray-800">2️⃣ 빠른 출근: 듬뿍 에그 샌드위치 & 아메리카노</p>
+                    <p class="text-gray-500 text-[11px]">구성: 에그마요 샌드위치 + 편의점 원두커피</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 다정한 추천 픽:</strong> 바쁜 아침, 든든한 계란과 진한 커피 향으로 하루를 깨워보세요. 🛒 CU</p>
                 </div>
             </div>
         </details>
 
-        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group" open>
+        <!-- 2. 5천 원 저녁 & 야식 (처음엔 닫힘) -->
+        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
-                <span class="flex items-center gap-1.5">💳 5천 원 미니멈 가벼운 저녁 & 야식 맵 (4종)</span>
+                <span class="flex items-center gap-1.5">💳 5천 원 미니멈 가벼 저녁 & 야식 맵 (4종)</span>
                 <span class="transition group-open:rotate-180 text-[10px]">▼</span>
             </summary>
             <div class="mt-3 space-y-3 text-xs">
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">🍽️ [저녁 1 / 다이어터] 여주 고구마 닭가슴살 샐러드 (4,900원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: GS25 여주고구마 닭가슴살샐러드 1편 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 오늘의 꿀조합:</strong> 칼로리는 가볍게, 포만감은 닭가슴살이랑 고구마가 챙겨 줘요. 🛒 GS25</p>
+                    <p class="font-bold text-gray-800">🍽️ [저녁 1 / 다이어터] 곤약 비빔면 & 구운 계란</p>
+                    <p class="text-gray-500 text-[11px]">구성: 저칼로리 곤약면 + 구운란 2알</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 오늘의 꿀조합:</strong> 매콤한 게 땡기지만 칼로리가 걱정될 때 최고의 선택. 🛒 GS25</p>
                 </div>
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">🍽️ [저녁 2] 딥핑 불제육김밥 (4,200원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: CU 딥핑불제육김밥 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]"><strong>💡 오늘의 꿀조합:</strong> 불제육김밥에 소스를 찍먹하는 신상이에요. 5천 원 안쪽 저녁이 든든해요. 🛒 CU</p>
+                    <p class="font-bold text-gray-800">🍽️ [저녁 2] 알뜰 참치마요 덮밥 & 작은 우동</p>
+                    <p class="text-gray-500 text-[11px]">구성: 즉석 참치마요 컵밥 + 미니 컵우동</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]"><strong>💡 오늘의 꿀조합:</strong> 달달하고 고소한 참치마요에 따끈한 우동 국물의 실패 없는 조합. 🛒 CU</p>
                 </div>
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">🌙 [야식 1] 오리지널 닭다리 (3,300원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: CU 오리지널닭다리 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 오늘의 꿀조합:</strong> 바삭한 닭다리 하나로 끝나는 야식이에요. 손도 마음도 가벼워요. 🛒 CU</p>
+                    <p class="font-bold text-gray-800">🌙 [야식 1] 눈꽃 치즈 떡볶이 & 플레인 탄산수</p>
+                    <p class="text-gray-500 text-[11px]">구성: 컵 떡볶이 + 스트링 치즈 + 제로 탄산수</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 오늘의 꿀조합:</strong> 매콤한 떡볶이에 치즈를 찢어 넣고 렌지에 돌리면 스트레스 싹. 🛒 세븐일레븐</p>
                 </div>
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">🌙 [야식 2] 미니 유부 가라아게 (2,900원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: CU 미니유부가라아게콤보 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]"><strong>💡 오늘의 꿀조합:</strong> 유부랑 가라아게를 같이 집어 먹는 작지만 재미있는 밤 콤보예요. 🛒 CU</p>
+                    <p class="font-bold text-gray-800">🌙 [야식 2] 직화 닭강정 & 제로 콜라</p>
+                    <p class="text-gray-500 text-[11px]">구성: 냉동 미니 닭강정 + 제로 탄산음료</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]"><strong>💡 오늘의 꿀조합:</strong> 하루 끝에 쌓인 피로를 단번에 날려버릴 야식 치트키. 🛒 GS25</p>
                 </div>
             </div>
         </details>
 
-        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group" open>
+        <!-- 3. 1만 원 든든 맵 (처음엔 닫힘) -->
+        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
                 <span class="flex items-center gap-1.5">💰 1만 원 든든한 저녁 & 야식 맵 (4종)</span>
                 <span class="transition group-open:rotate-180 text-[10px]">▼</span>
             </summary>
             <div class="mt-3 space-y-3 text-xs">
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">🍜 [저녁 1] K-세일페스타 도시락 (6,900원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: GS25 이달의 도시락 K-세일페스타 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 꿀조합:</strong> 오늘 나온 도시락이에요. 밥 300g에 제육, 햄구이, 계란말이가 들어 있어요. 🛒 GS25</p>
+                    <p class="font-bold text-gray-800">🍜 [저녁 1] 프리미엄 정찬 도시락 & 바나나우유</p>
+                    <p class="text-gray-500 text-[11px]">구성: 11찬 이상 프리미엄 도시락 + 뚱바 우유</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 꿀조합:</strong> 식당 부럽지 않은 고기반찬 퍼레이드 후 달달한 우유로 마무리. 🛒 GS25</p>
                 </div>
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">🍜 [저녁 2] 콰트로 닭강정팩 (9,900원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: CU 콰트로닭강정팩 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]"><strong>💡 꿀조합:</strong> 후라이드, 달콤양념, 마늘간장, 갈비 네 가지가 한 팩인 만 원 안 메인이에요. 🛒 CU</p>
+                    <p class="font-bold text-gray-800">🍜 [저녁 2] 훈제오리 슬라이스 & 찰잡곡밥</p>
+                    <p class="text-gray-500 text-[11px]">구성: 편의점 훈제오리 팩 + 즉석 잡곡밥 + 김치 소포장</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]"><strong>💡 꿀조합:</strong> 전자레인지만 있으면 완성되는 제대로 된 보양식 한 상. 🛒 CU</p>
                 </div>
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">🌙 [야식 1] 고민할 필요 없는 도시락 (4,900원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: 세븐일레븐 고민할필요없는도시락 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 꿀조합:</strong> 제육, 너비아니, 소시지를 한 도시락에 담아 야식인데 한 끼처럼 든든해요. 🛒 세븐일레븐</p>
+                    <p class="font-bold text-gray-800">🌙 [야식 1] 매콤 불막창 & 모짜렐라 치즈</p>
+                    <p class="text-gray-500 text-[11px]">구성: 냉동 직화 불막창 + 뿌려먹는 피자치즈</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 꿀조합:</strong> 불향 가득한 막창 위에 치즈를 듬뿍 올려 매콤고소하게. 🛒 세븐일레븐</p>
                 </div>
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">🌙 [야식 2] 치즈폭탄 라볶퀸 (5,000원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: GS25 떡볶퀸 치즈폭탄라볶퀸 315g 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]"><strong>💡 꿀조합:</strong> 모짜렐라가 듬뿍 올라간 라볶이라 매콤한 밤을 부드럽게 덮어 줘요. 🛒 GS25</p>
+                    <p class="font-bold text-gray-800">🌙 [야식 2] 족발 슬라이스 & 무알콜 맥주</p>
+                    <p class="text-gray-500 text-[11px]">구성: 편의점 미니 족발 + 무알콜 맥주 1캔</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]"><strong>💡 꿀조합:</strong> 쫄깃한 족발에 톡 쏘는 무알콜 맥주로 취기 없이 기분만 내기. 🛒 CU</p>
                 </div>
             </div>
         </details>
 
-        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group" open>
+        <!-- 4. 편의점 디저트 (처음엔 닫힘) -->
+        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
                 <span class="flex items-center gap-1.5">🧁 편의점 3사 요즘 핫한 신상 디저트 (3종)</span>
                 <span class="transition group-open:rotate-180 text-[10px]">▼</span>
             </summary>
             <div class="mt-3 space-y-3 text-xs">
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1 border-l-4 border-blue-400">
-                    <p class="font-bold text-gray-800">🏪 [GS25 픽] 모모즈랩 고구마맛탕 휘낭시에 (3,500원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: 모모즈랩 고구마맛탕휘낭시에 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 text-[11px]"><strong>💡 핫템 포인트:</strong> 설탕 코팅, 고구마 필링, 휘낭시에가 겹친 GS 신상이에요.</p>
+                    <p class="font-bold text-gray-800">🏪 [GS25 픽] 크림듬뿍 딸기 샌드위치</p>
+                    <p class="text-gray-500 text-[11px]">구성: 생딸기 샌드위치 + 흰우유</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 text-[11px]"><strong>💡 핫템 포인트:</strong> 겨울 시즌이 돌아오자마자 발주 대란 일어난 베스트셀러.</p>
                 </div>
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1 border-l-4 border-purple-400">
-                    <p class="font-bold text-gray-800">🏪 [CU 픽] 신세계 고구마 떠먹케 (3,800원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: 신세계 고구마떠먹케 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-purple-50 text-[11px]"><strong>💡 핫템 포인트:</strong> 스푼으로 퍼먹는 고구마 케이크예요. 이번 시즌 CU 달콤 신상이에요.</p>
+                    <p class="font-bold text-gray-800">🏪 [CU 픽] 두바이 스타일 초콜릿 & 아메리카노</p>
+                    <p class="text-gray-500 text-[11px]">구성: 피스타치오 카다이프 초콜릿 + 블랙커피</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-purple-50 text-[11px]"><strong>💡 핫템 포인트:</strong> 바삭한 식감과 달콤함의 극치! 어플 재고 확인 필수인 초인기템.</p>
                 </div>
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1 border-l-4 border-green-400">
-                    <p class="font-bold text-gray-800">🏪 [세븐일레븐 픽] 요즘 블루베리 요거트 마카롱 (4,000원)</p>
-                    <p class="text-gray-500 text-[11px]">구성: 요즘블루베리요거트마카롱 1개</p>
-                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-green-50 text-[11px]"><strong>💡 핫템 포인트:</strong> 이번 주 세븐 신상이에요. 같이 나온 모찌롤도 4,000원이에요.</p>
+                    <p class="font-bold text-gray-800">🏪 [세븐일레븐 픽] 요즘 블루베리 요거트 마카롱</p>
+                    <p class="text-gray-500 text-[11px]">구성: 뚱카롱 1입 + 따뜻한 홍차</p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-green-50 text-[11px]"><strong>💡 핫템 포인트:</strong> 전문점 퀄리티의 쫀득한 꼬끄와 상큼한 필링 조합.</p>
                 </div>
             </div>
         </details>
 
+        <!-- 쿠팡 파트너스 고정 링크 -->
         <section class="bg-[#FEFCE8] border border-yellow-200 rounded-3xl p-4 text-center shadow-sm space-y-1.5">
             <a href="https://link.coupang.com/a/ipbUV8e4EC" target="_blank" class="inline-block w-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs py-2.5 px-4 rounded-2xl transition shadow-sm">
                 👉 추천 생존 템 최저가로 모아보기
@@ -135,9 +147,31 @@
 
     </div>
 
-    <!-- 팝업 스크립트 -->
+    <!-- 홈 화면 추가 팝업 -->
+    <div id="home-popup" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-[90%] max-w-sm bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] border border-sky-100 p-4 z-50 flex items-start gap-3 transition-all duration-300">
+        <div class="text-2xl mt-0.5">📲</div>
+        <div class="flex-1 space-y-1">
+            <p class="text-[12px] font-bold text-slate-800">믐냠을 앱처럼 사용해 보세요!</p>
+            <p class="text-[10px] text-slate-500 leading-relaxed">
+                브라우저 하단의 <strong>[공유]</strong> 버튼을 누르고 <strong>[홈 화면에 추가]</strong>를 선택하면 매일 1초 만에 확인할 수 있어요.
+            </p>
+        </div>
+        <button id="close-popup" class="text-slate-400 hover:text-slate-600 font-bold p-1 text-sm">
+            ✕
+        </button>
+    </div>
+
+    <!-- 스크립트 -->
     <script>
+        // 오늘 날짜 업데이트
         document.getElementById('today-date').textContent = `📅 오늘 날짜: ${new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}`;
+
+        // 팝업창 닫기 기능
+        document.getElementById('close-popup').addEventListener('click', function() {
+            const popup = document.getElementById('home-popup');
+            popup.style.opacity = '0';
+            setTimeout(() => { popup.style.display = 'none'; }, 300);
+        });
     </script>
 </body>
 </html>
