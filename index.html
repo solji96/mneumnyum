@@ -3,21 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#FFF3CD">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
-    <meta name="apple-mobile-web-app-title" content="믐냠">
     <title>🥣 믐냠 | MMM, YUM! 편의점 생존 가이드</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#F0F9FF] text-slate-800 min-h-screen py-8 px-4 flex justify-center items-center text-xs">
+<body class="bg-[#F0F9FF] text-slate-800 min-h-screen py-8 px-4 flex justify-center items-center text-xs relative">
 
+    <!-- 메인 컨텐츠 -->
     <div class="w-full max-w-md bg-[#F0F9FF] rounded-[36px] shadow-2xl overflow-hidden p-5 sm:p-6 space-y-4">
-
+        
+        <!-- 헤더 영역 -->
         <header class="text-center space-y-1.5">
             <span class="inline-block bg-amber-100 text-amber-800 text-[11px] font-semibold px-3 py-0.5 rounded-full">
                 ✨ MMM, YUM! 편의점 생존 가이드
@@ -26,313 +21,224 @@
             <p class="text-xs text-slate-600">
                 냉장고는 비었는데 나가기는 귀찮을 때, 오늘 가장 맛있고 스마트한 편의점 한 끼를 열어보세요!
             </p>
+            <!-- 오늘 날짜 및 요일 표시 영역 -->
             <div id="today-date" class="text-[11px] font-bold text-sky-700 bg-sky-100 py-1 px-2.5 rounded-xl inline-block mt-1">
                 📅 불러오는 중...
             </div>
         </header>
 
-        <section class="bg-amber-50 border border-amber-200 rounded-xl px-2.5 py-1.5 text-[10px] text-amber-900 leading-tight">
-            <h2 class="font-bold">⏰ 메뉴 요정의 갱신 타임</h2>
-            <p class="font-bold text-sky-800">• 아침·저녁·야식·다이어트 👉 매일 밤 자정 리셋 🌙</p>
-            <p class="font-bold text-sky-800">• 달콤 디저트 👉 매주 월요일 자정 새 단장 🧁</p>
+        <!-- 업데이트 안내 -->
+        <section class="bg-amber-50 border border-amber-200 rounded-2xl p-3 text-[11px] text-amber-900 space-y-0.5">
+            <h2 class="font-bold flex items-center gap-1">📢 [알아두면 좋은 이용 팁]</h2>
+            <p>• <strong>식단 맵 라인업:</strong> 자정이 지나면 그날의 무드에 맞춘 신선한 조합으로 자동 바뀝니다.</p>
+            <p>• <strong>디저트 코너:</strong> 한 주간 가장 핫했던 신상과 품절 대란템 위주로 매주 월요일에 찾아옵니다.</p>
         </section>
 
-        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
+        <!-- 모닝 프로틴 & 아침 맵 -->
+        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group" open>
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
-                <span class="flex items-center gap-1.5">💪 다이어트 데이 (단백질 · 식이섬유)</span>
+                <span class="flex items-center gap-1.5">☀️ 모닝 프로틴 & 아침 맵 (2종)</span>
                 <span class="transition group-open:rotate-180 text-[10px]">▼</span>
             </summary>
-            <div id="diet-list" class="mt-3 space-y-3 text-xs"></div>
+            <div id="morning-list" class="mt-3 space-y-3 text-xs">
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+            </div>
         </details>
 
+        <!-- 저녁 & 야식 맵 -->
         <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
-                <span id="morning-title" class="flex items-center gap-1.5">☀️ 모닝 신상</span>
+                <span class="flex items-center gap-1.5">💳 5천 원 미니멈 가벼운 저녁 & 야식 맵</span>
                 <span class="transition group-open:rotate-180 text-[10px]">▼</span>
             </summary>
-            <div id="morning-list" class="mt-3 space-y-3 text-xs"></div>
+            <div id="light-list" class="mt-3 space-y-3 text-xs">
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+            </div>
         </details>
 
+        <!-- 1만 원 가성비 든든 맵 -->
         <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
-                <span id="light-title" class="flex items-center gap-1.5">💳 5천 원대 신상</span>
+                <span class="flex items-center gap-1.5">💰 1만 원 든든한 메인 맵</span>
                 <span class="transition group-open:rotate-180 text-[10px]">▼</span>
             </summary>
-            <div id="light-list" class="mt-3 space-y-3 text-xs"></div>
+            <div id="hearty-list" class="mt-3 space-y-3 text-xs">
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+            </div>
         </details>
 
+        <!-- 편의점 디저트 & 신상 맵 -->
         <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
-                <span id="hearty-title" class="flex items-center gap-1.5">💰 1만 원대 신상</span>
+                <span class="flex items-center gap-1.5">🧁 편의점별 요즘 핫한 디저트 맵</span>
                 <span class="transition group-open:rotate-180 text-[10px]">▼</span>
             </summary>
-            <div id="hearty-list" class="mt-3 space-y-3 text-xs"></div>
+            <div id="dessert-list" class="mt-3 space-y-3 text-xs">
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+                <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
+                    <p class="font-bold text-gray-800" data-field="title"></p>
+                    <p class="text-gray-500 text-[11px]" data-field="compose"></p>
+                    <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-yellow-50/50 text-[11px]">
+                        <strong>💡 오늘의 추천 꿀조합:</strong> <span data-field="blurb"></span>
+                    </p>
+                </div>
+            </div>
         </details>
 
-        <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
-            <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
-                <span id="dessert-title" class="flex items-center gap-1.5">🧁 신상 디저트</span>
-                <span class="transition group-open:rotate-180 text-[10px]">▼</span>
-            </summary>
-            <p id="dessert-week" class="mt-3 text-[11px] font-bold text-sky-700 bg-sky-100 py-1 px-2.5 rounded-xl inline-block">이번 주 불러오는 중...</p>
-            <div id="dessert-list" class="mt-3 space-y-3 text-xs"></div>
-        </details>
-
+        <!-- 쿠팡 파트너스 최저가 확인 맨 하단 박스 및 고지 문구 -->
         <section class="bg-[#FEFCE8] border border-yellow-200 rounded-3xl p-4 text-center shadow-sm space-y-1.5">
-            <a id="coupang-link" href="https://link.coupang.com/a/ipbUV8e4EC" target="_blank" rel="noopener noreferrer" class="inline-block w-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-sm leading-5 py-2.5 px-4 rounded-2xl transition shadow-sm">
-                잠시만요! 최저가 비교하러 가기 🏃‍♀️✨
+            <a href="https://link.coupang.com/a/ipbUV8e4EC" target="_blank" class="inline-block w-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs py-2.5 px-4 rounded-2xl transition shadow-sm">
+                👉 추천 생존 템 최저가로 모아보기
             </a>
-            <p class="text-[9px] text-slate-400 whitespace-nowrap tracking-tight">
-                이 포스팅은 쿠팡 파트너스 활동의 일환으로, 소정의 수수료를 제공받습니다.
+            <p class="text-[9px] text-slate-400 px-2 leading-relaxed">
+                이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.
             </p>
         </section>
 
     </div>
 
-    <script src="menu-seed.js"></script>
+    <!-- 홈 화면 추가 유도 팝업창 -->
+    <div id="home-popup" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-[90%] max-w-sm bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] border border-sky-100 p-4 z-50 flex items-start gap-3 transition-all duration-300">
+        <div class="text-2xl mt-0.5">📲</div>
+        <div class="flex-1 space-y-1">
+            <p class="text-[12px] font-bold text-slate-800">믐냠을 앱처럼 사용해 보세요!</p>
+            <p class="text-[10px] text-slate-500 leading-relaxed">
+                브라우저 하단의 <strong>[공유]</strong> 버튼을 누르고 <strong>[홈 화면에 추가]</strong>를 선택하면 매일 1초 만에 확인할 수 있어요.
+            </p>
+        </div>
+        <button id="close-popup" class="text-slate-400 hover:text-slate-600 font-bold p-1 text-sm">
+            ✕
+        </button>
+    </div>
+
+    <!-- 기능 스크립트 (날짜 생성 및 팝업 닫기) -->
     <script>
         const SUPABASE_URL = "https://wtmblnhwvnmpjopcjvpo.supabase.co";
         const SUPABASE_KEY = "sb_publishable_vn-cZQ1Wi8thHFKDP6t5jQ_F15APSlB";
-        const COUPANG_LINK = "https://link.coupang.com/a/ipbUV8e4EC";
-        const marks = { CU: "🟢", GS25: "🔵", 세븐일레븐: "🟠", 이마트24: "🟡" };
-        const PET_PRODUCT = /반려동물|강아지|고양이|애견|애묘|펫/;
-        const labels = {
-            diet: ["1️⃣ 아침:", "2️⃣ 한 끼:", "3️⃣ 가벼운 저녁:", "4️⃣ 야식 대신:"],
-            morning: ["1️⃣", "2️⃣"],
-            light: ["🍽️ [저녁 1]", "🍽️ [저녁 2]", "🌙 [야식 1]", "🌙 [야식 2]"],
-            hearty: ["🍽️ [저녁 1]", "🍽️ [저녁 2]", "🌙 [야식 1]", "🌙 [야식 2]"]
-        };
-        const MENU_SEED = window.MENU_SEED || [];
 
-        document.getElementById("today-date").textContent =
-            `📅 오늘 날짜: ${new Date().toLocaleDateString("ko-KR", { year: "numeric", month: "long", day: "numeric", weekday: "long", timeZone: "Asia/Seoul" })}`;
-        document.getElementById("coupang-link").href = COUPANG_LINK;
+        const dateElement = document.getElementById('today-date');
+        const today = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long', timeZone: 'Asia/Seoul' };
+        dateElement.textContent = `📅 오늘 날짜: ${today.toLocaleDateString('ko-KR', options)}`;
+        const dateKey = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Seoul', year: 'numeric', month: '2-digit', day: '2-digit' }).format(today);
 
-        function seoulToday() {
-            const parts = new Intl.DateTimeFormat("en-US", {
-                timeZone: "Asia/Seoul",
-                year: "numeric",
-                month: "numeric",
-                day: "numeric"
-            }).formatToParts(new Date());
-            const read = (type) => Number(parts.find((part) => part.type === type).value);
-            const year = read("year");
-            const month = read("month");
-            const day = read("day");
-            const weekday = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Seoul", weekday: "short" })
-                .format(new Date(Date.UTC(year, month - 1, 1)));
-            const firstWeekday = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[weekday];
-            const untilMonday = (8 - firstWeekday) % 7;
-            const firstMonday = untilMonday === 0 ? 1 : untilMonday + 1;
-            const week = day < firstMonday ? 0 : 1 + Math.floor((day - firstMonday) / 7);
-            return { year, month, day, week };
-        }
+        document.getElementById('close-popup').addEventListener('click', function() {
+            const popup = document.getElementById('home-popup');
+            popup.style.opacity = '0';
+            setTimeout(() => { popup.style.display = 'none'; }, 300);
+        });
 
-        function parseSection(value) {
-            const match = String(value || "").match(/^(diet|morning|light|hearty|dessert)#(\d+)$/);
-            if (!match) return null;
-            return { section: match[1], slot: Number(match[2]) };
-        }
-
-        function dietInfo(name) {
-            if (/맥플랜|뉴트리션/.test(name)) {
-                return { nutrition: "단백질 20g · 제로슈거 · 식이섬유 포뮬러", line: "식이섬유 함량 g는 포장 영양성분에서 확인하세요." };
-            }
-            if (/밸런스밀/.test(name)) return { nutrition: "단백질 20g 이상 · 통곡물 식이섬유 · 저당", line: "" };
-            if (/닭가슴살/.test(name) && /단호박/.test(name)) {
-                return { nutrition: "단백질은 닭가슴살 · 식이섬유는 단호박과 채소", line: "단백질·식이섬유 g는 포장지를 보는 것이 정확합니다." };
-            }
-            if (/여주/.test(name) && /닭가슴살/.test(name)) {
-                return { nutrition: "단백질은 닭가슴살·계란 · 식이섬유는 고구마와 채소", line: "" };
-            }
-            if (/샐러드|프로틴|닭가슴/.test(name)) return { nutrition: "", line: "단백질·식이섬유 g는 포장 영양성분에서 확인하세요." };
-            return { nutrition: "", line: "" };
-        }
-
-        function priceText(price) {
-            if (price == null || price === "") return "";
-            const text = String(price);
-            if (text.includes("원")) return text;
-            const amount = Number(text.replace(/[^\d.]/g, ""));
-            return Number.isFinite(amount) && amount > 0 ? `${amount.toLocaleString("ko-KR")}원` : "";
-        }
-
-        function fill(id, items, emptyText) {
-            const root = document.getElementById(id);
-            root.replaceChildren();
-            if (!items.length) {
-                const empty = document.createElement("p");
-                empty.className = "text-[11px] text-slate-500";
-                empty.textContent = emptyText;
-                root.append(empty);
-                return;
-            }
-            items.forEach((item) => {
-                const card = document.createElement("div");
-                card.className = "bg-white/80 p-3 rounded-2xl shadow-sm space-y-1";
-                const title = document.createElement("p");
-                title.className = "font-bold text-gray-800";
-                title.textContent = item.title;
-                const compose = document.createElement("p");
-                compose.className = "text-gray-500 text-[11px]";
-                compose.textContent = item.name.includes(" + ") ? `구성: ${item.name}` : `구성: ${item.name} 1개`;
-                card.append(title, compose);
-                if (item.nutrition) {
-                    const nutrition = document.createElement("p");
-                    nutrition.className = "mt-1.5 text-[11px] font-semibold text-emerald-800";
-                    nutrition.textContent = item.nutrition;
-                    card.append(nutrition);
-                }
-                const note = document.createElement("div");
-                note.className = "mt-1.5 px-2 py-1.5 rounded-xl bg-sky-50/50 border border-sky-100 text-[10px] leading-4 tracking-tight text-slate-700 space-y-0.5";
-                const pickLine = document.createElement("p");
-                const pickLabel = document.createElement("strong");
-                pickLabel.className = "font-semibold text-slate-800";
-                pickLabel.textContent = "💡 MD's Pick: ";
-                pickLine.append(pickLabel, document.createTextNode("공식 신상품입니다. 점포마다 없을 수 있습니다."));
-                const storeLine = document.createElement("p");
-                const storeLabel = document.createElement("strong");
-                storeLabel.className = "font-semibold text-slate-800";
-                storeLabel.textContent = "🛒 추천 편의점: ";
-                storeLine.append(storeLabel, document.createTextNode(item.store || ""));
-                note.append(pickLine, storeLine);
-                card.append(note);
-                if (item.line) {
-                    const rule = document.createElement("hr");
-                    rule.className = "border-sky-100 my-1.5";
-                    const line = document.createElement("p");
-                    line.className = "text-[11px] text-gray-600";
-                    line.textContent = `한 줄 평: ${item.line}`;
-                    card.append(rule, line);
-                }
-                root.append(card);
+        function paint(listId, items) {
+            const cards = document.querySelectorAll('#' + listId + ' > div');
+            cards.forEach((card, index) => {
+                const item = items[index];
+                card.querySelector('[data-field="title"]').textContent = item ? item.title : '오늘 메뉴를 아직 준비 중이에요.';
+                card.querySelector('[data-field="compose"]').textContent = item ? '구성: ' + item.compose : '';
+                card.querySelector('[data-field="blurb"]').textContent = item ? item.blurb : '';
             });
         }
 
-        function card(item, label) {
-            const info = item.section === "diet" ? dietInfo(item.name) : { nutrition: "", line: item.pick === "best-new" ? "공식 신상품 랭킹에 있습니다." : "" };
-            if (item.nutrition) info.nutrition = item.nutrition;
-            if (item.line) info.line = item.line;
-            const price = priceText(item.price);
-            return {
-                title: `${label} ${item.name}${price ? ` (${price})` : ""}`.trim(),
-                name: item.name,
-                store: item.store,
-                nutrition: info.nutrition,
-                line: info.line
-            };
-        }
-
-        function picks() {
-            const map = new Map();
-            MENU_SEED.forEach((item) => map.set(`${item.section}|${item.slot}|${item.name}|${item.store}`, item.pick));
-            return map;
-        }
-
-        function scheduledRows(rows, today) {
-            const known = picks();
-            return rows.flatMap((row) => {
-                const parsed = parseSection(row.section);
-                if (!parsed || PET_PRODUCT.test(String(row.name || ""))) return [];
-                const wanted = parsed.section === "dessert" ? today.week : today.day;
-                if (parsed.slot !== wanted) return [];
-                return [{
-                    section: parsed.section,
-                    slot: parsed.slot,
-                    name: row.name,
-                    price: row.price,
-                    store: row.store,
-                    pick: row.pick || known.get(`${parsed.section}|${parsed.slot}|${row.name}|${row.store}`) || ""
-                }];
-            });
-        }
-
-        function wednesdayMenu() {
-            return [
-                { section: "diet", name: "CJ)닭가슴살소시지80G + CJ)맥플랜뉴트리션프로틴흑임자", price: 7300, store: "GS25", nutrition: "단백질 20g · 제로슈거 · 식이섬유 포뮬러", line: "소시지로 단백질을 채우고, 흑임자 뉴트리션으로 아침을 마무리해요. 식이섬유 g는 포장 영양성분을 봐 주세요." },
-                { section: "diet", name: "샐)프로틴불고기에그", price: 5200, store: "CU", line: "단백질·식이섬유 g는 포장 영양성분에서 확인하세요." },
-                { section: "diet", name: "여주고구마)닭가슴살샐러드1편", price: 4900, store: "GS25", nutrition: "단백질은 닭가슴살·계란 · 식이섬유는 고구마와 채소", line: "칼로리는 가볍게, 포만감은 샐러드로 가져가는 저녁이에요." },
-                { section: "diet", name: "샐)프로틴직화치킨에그", price: 5200, store: "CU", line: "야식 자리에 치킨과 계란을 두면 단백질이 먼저 남아요. g는 포장지를 봐 주세요." },
-                { section: "morning", name: "CJ)닭가슴살소시지80G + CJ)맥플랜뉴트리션프로틴흑임자", price: 7300, store: "GS25", nutrition: "단백질 20g · 제로슈거 · 식이섬유 포뮬러", line: "수요일 모닝은 이 조합으로. 고단백에 식이섬유 포뮬러까지 한 세트로 챙겼어요." },
-                { section: "morning", name: "겟모닝)단호박오트죽", price: 3900, store: "CU", line: "단호박과 오트가 들어간 따뜻한 한 컵이에요. 위가 예민한 아침에도 편해요." },
-                { section: "light", name: "여주고구마)닭가슴살샐러드1편", price: 4900, store: "GS25", nutrition: "단백질은 닭가슴살·계란 · 식이섬유는 고구마와 채소", line: "5천 원 안쪽인데 저녁 포만감은 충분해요. 다이어터 저녁으로 먼저 담았어요." },
-                { section: "light", name: "면)돈까스듬뿍청양크림면", price: 5300, store: "CU", line: "청양 크림에 돈까스가 올라간 신상 면이에요. 국물 저녁이 당길 때 좋아요." },
-                { section: "light", name: "김)멜팅체다치즈불닭", price: 3300, store: "CU", line: "한 줄로 끝나는 야식이에요. 체다랑 불닭이 같이 녹아요." },
-                { section: "light", name: "김)진미튀김어묵김밥", price: 3200, store: "CU", line: "어묵 튀김이 들어간 김밥이라 출출한 밤에 딱 맞아요." },
-                { section: "hearty", name: "이달의도시락 K-세일페스타", price: 6900, store: "GS25", line: "오늘 나온 도시락이에요. 밥 300g에 제육·햄구이·계란말이가 들어 만 원 안에도 저녁이 든든해요." },
-                { section: "dessert", name: "요즘블루베리요거트마카롱", price: 4000, store: "세븐일레븐", pick: "best-new", line: "이번 주 세븐 신상이에요. 요즘 블루베리 그릭요거트를 마카롱에 넣었고, 같이 나온 모찌롤도 4,000원이에요." }
-            ];
-        }
-
-        function render(rows) {
-            const today = seoulToday();
-            const grouped = { diet: [], morning: [], light: [], hearty: [], dessert: [] };
-            if (today.year === 2026 && today.month === 11 && today.day === 4) {
-                wednesdayMenu().forEach((item) => grouped[item.section].push(item));
-            } else {
-                const seen = new Set();
-                scheduledRows(rows, today).forEach((item) => {
-                    const key = `${item.section}|${item.name}|${item.store}`;
-                    if (seen.has(key) || !grouped[item.section]) return;
-                    seen.add(key);
-                    grouped[item.section].push(item);
-                });
-            }
-            document.getElementById("morning-title").textContent = `☀️ 모닝 베스트 신상 (${grouped.morning.length}종)`;
-            document.getElementById("light-title").textContent = `💳 5천 원대 베스트 신상 (${grouped.light.length}종)`;
-            document.getElementById("hearty-title").textContent = `💰 1만 원대 베스트 신상 (${grouped.hearty.length}종)`;
-            document.getElementById("dessert-title").textContent = `🧁 베스트 신상 디저트 (${grouped.dessert.length}곳)`;
-            document.getElementById("dessert-week").textContent = `📅 ${today.month}월 베스트 신상`;
-            fill("diet-list", grouped.diet.map((item, index) => card(item, labels.diet[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 단백질·식이섬유가 공개된 상품이 없습니다.");
-            fill("morning-list", grouped.morning.map((item, index) => card(item, labels.morning[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 아침이 없습니다.");
-            fill("light-list", grouped.light.map((item, index) => card(item, labels.light[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 5천 원대 메뉴가 없습니다.");
-            fill("hearty-list", grouped.hearty.map((item, index) => card(item, labels.hearty[index] || `${index + 1}.`)), "이번 달 베스트 신상 중에 이 칸에 넣을 1만 원대 메뉴가 없습니다.");
-            fill("dessert-list", grouped.dessert.map((item) => card(item, `${marks[item.store] || "🧁"} [${item.store || "디저트"}]`)), "이번 주 칸에 넣을 베스트 신상 디저트가 없습니다.");
-        }
-
-        function localRows() {
-            return MENU_SEED.map((item) => ({
-                section: `${item.section}#${item.slot}`,
-                name: item.name,
-                price: item.price,
-                store: item.store,
-                pick: item.pick
-            }));
-        }
-
-        function saveSeed() {
-            const payload = MENU_SEED.map((item) => ({
-                section: `${item.section}#${item.slot}`,
-                name: item.name,
-                price: item.price,
-                store: item.store
-            }));
-            const headers = {
-                apikey: SUPABASE_KEY,
-                Authorization: `Bearer ${SUPABASE_KEY}`,
-                "Content-Type": "application/json",
-                Prefer: "return=minimal"
-            };
-            const batches = [];
-            for (let index = 0; index < payload.length; index += 80) batches.push(payload.slice(index, index + 80));
-            return batches.reduce((chain, batch) => chain.then(() => fetch(`${SUPABASE_URL}/rest/v1/menus`, {
-                method: "POST",
-                headers,
-                body: JSON.stringify(batch)
-            })), Promise.resolve());
-        }
-
-        fetch(`${SUPABASE_URL}/rest/v1/menus?select=section,name,price,store&order=id.asc`, {
+        fetch(`${SUPABASE_URL}/rest/v1/menus?select=section,name,price,store&name=like.*${dateKey}*&order=section.asc`, {
             headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
         })
             .then((response) => response.json())
             .then((rows) => {
-                const list = Array.isArray(rows) ? rows : [];
-                const saved = list.some((row) => parseSection(row.section));
-                if (!saved) saveSeed();
-                render(saved ? list : localRows());
+                const grouped = { morning: [], light: [], hearty: [], dessert: [] };
+                (Array.isArray(rows) ? rows : []).forEach((row) => {
+                    let item;
+                    try { item = JSON.parse(row.name); } catch (error) { return; }
+                    if (!item || item.date !== dateKey || !grouped[row.section]) return;
+                    grouped[row.section].push(item);
+                });
+                Object.values(grouped).forEach((items) => items.sort((a, b) => a.sort - b.sort));
+                paint('morning-list', grouped.morning);
+                paint('light-list', grouped.light);
+                paint('hearty-list', grouped.hearty);
+                paint('dessert-list', grouped.dessert);
             })
-            .catch(() => render(localRows()));
+            .catch(() => {
+                ['morning-list', 'light-list', 'hearty-list', 'dessert-list'].forEach((id) => paint(id, []));
+            });
     </script>
 </body>
 </html>
