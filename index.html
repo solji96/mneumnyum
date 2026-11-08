@@ -4,26 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🥣 믐냠 | MMM, YUM! 편의점 생존 가이드</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#F0F9FF] text-slate-800 min-h-screen py-8 px-4 flex justify-center items-center text-xs relative">
 
-    <!-- 메인 컨텐츠 -->
     <div class="w-full max-w-md bg-[#F0F9FF] rounded-[36px] shadow-2xl overflow-hidden p-5 sm:p-6 space-y-4">
         
-        <!-- 헤더 영역 -->
         <header class="text-center space-y-1.5">
             <span class="inline-block bg-amber-100 text-amber-800 text-[11px] font-semibold px-3 py-0.5 rounded-full">
                 ✨ MMM, YUM! 편의점 생존 가이드
             </span>
             <h1 class="text-2xl font-black text-sky-900 tracking-tight">🥣 믐냠</h1>
-            <p class="text-xs text-slate-600">
-                냉장고는 비었는데 나가기는 귀찮을 때, 오늘 가장 맛있고 스마트한 편의점 한 끼!
-            </p>
-            <div id="today-date" class="text-[11px] font-bold text-sky-700 bg-sky-100 py-1 px-2.5 rounded-xl inline-block mt-1">
-                📅 불러오는 중...
-            </div>
+            <p class="text-xs text-slate-600">냉장고는 비었는데 나가기는 귀찮을 때, 오늘 가장 맛있고 스마트한 편의점 한 끼!</p>
+            <div id="today-date" class="text-[11px] font-bold text-sky-700 bg-sky-100 py-1 px-2.5 rounded-xl inline-block mt-1">📅 불러오는 중...</div>
         </header>
 
         <section class="bg-amber-50 border border-amber-200 rounded-2xl p-3 text-[11px] text-amber-900 space-y-0.5">
@@ -32,7 +25,7 @@
             <p>• <strong>디저트 코너:</strong> 한 주간 가장 핫했던 신상과 품절 대란템 위주로 매주 월요일에 찾아옵니다.</p>
         </section>
 
-        <!-- 1. 아침 맵 (처음엔 닫힘) -->
+        <!-- 1. 아침 맵 (다이어트 포함) -->
         <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
                 <span class="flex items-center gap-1.5">☀️ 모닝 프로틴 & 아침 맵 (2종)</span>
@@ -52,15 +45,15 @@
             </div>
         </details>
 
-        <!-- 2. 5천 원 저녁 & 야식 (처음엔 닫힘) -->
+        <!-- 2. 5천 원 맵 (다이어트 포함) -->
         <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
-                <span class="flex items-center gap-1.5">💳 5천 원 미니멈 가벼 저녁 & 야식 맵 (4종)</span>
+                <span class="flex items-center gap-1.5">💳 5천 원 미니멈 가벼운 저녁 & 야식 맵 (4종)</span>
                 <span class="transition group-open:rotate-180 text-[10px]">▼</span>
             </summary>
             <div class="mt-3 space-y-3 text-xs">
                 <div class="bg-white/80 p-3 rounded-2xl shadow-sm space-y-1">
-                    <p class="font-bold text-gray-800">🍽️ [저녁 1 / 다이어터] 곤약 비빔면 & 구운 계란</p>
+                    <p class="font-bold text-gray-800">🍽️ [저녁 1 / 다이어터 픽] 곤약 비빔면 & 구운 계란</p>
                     <p class="text-gray-500 text-[11px]">구성: 저칼로리 곤약면 + 구운란 2알</p>
                     <p class="mt-1.5 p-2.5 rounded-xl text-slate-700 bg-sky-50/50 border border-sky-100 text-[11px]"><strong>💡 오늘의 꿀조합:</strong> 매콤한 게 땡기지만 칼로리가 걱정될 때 최고의 선택. 🛒 GS25</p>
                 </div>
@@ -82,7 +75,7 @@
             </div>
         </details>
 
-        <!-- 3. 1만 원 든든 맵 (처음엔 닫힘) -->
+        <!-- 3. 1만 원 맵 -->
         <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
                 <span class="flex items-center gap-1.5">💰 1만 원 든든한 저녁 & 야식 맵 (4종)</span>
@@ -112,7 +105,7 @@
             </div>
         </details>
 
-        <!-- 4. 편의점 디저트 (처음엔 닫힘) -->
+        <!-- 4. 디저트 맵 -->
         <details class="bg-[#FEFCE8] rounded-3xl p-4 shadow-sm border border-yellow-200 group">
             <summary class="font-bold text-yellow-900 text-xs flex justify-between items-center cursor-pointer list-none">
                 <span class="flex items-center gap-1.5">🧁 편의점 3사 요즘 핫한 신상 디저트 (3종)</span>
@@ -137,7 +130,7 @@
             </div>
         </details>
 
-        <!-- 쿠팡 파트너스 고정 링크 -->
+        <!-- 쿠팡 고정 링크 -->
         <section class="bg-[#FEFCE8] border border-yellow-200 rounded-3xl p-4 text-center shadow-sm space-y-1.5">
             <a href="https://link.coupang.com/a/ipbUV8e4EC" target="_blank" class="inline-block w-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs py-2.5 px-4 rounded-2xl transition shadow-sm">
                 👉 추천 생존 템 최저가로 모아보기
@@ -147,7 +140,7 @@
 
     </div>
 
-    <!-- 홈 화면 추가 팝업 -->
+    <!-- 앱 추가 팝업 -->
     <div id="home-popup" class="fixed bottom-6 left-1/2 transform -translate-x-1/2 w-[90%] max-w-sm bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.15)] border border-sky-100 p-4 z-50 flex items-start gap-3 transition-all duration-300">
         <div class="text-2xl mt-0.5">📲</div>
         <div class="flex-1 space-y-1">
@@ -156,17 +149,11 @@
                 브라우저 하단의 <strong>[공유]</strong> 버튼을 누르고 <strong>[홈 화면에 추가]</strong>를 선택하면 매일 1초 만에 확인할 수 있어요.
             </p>
         </div>
-        <button id="close-popup" class="text-slate-400 hover:text-slate-600 font-bold p-1 text-sm">
-            ✕
-        </button>
+        <button id="close-popup" class="text-slate-400 hover:text-slate-600 font-bold p-1 text-sm">✕</button>
     </div>
 
-    <!-- 스크립트 -->
     <script>
-        // 오늘 날짜 업데이트
         document.getElementById('today-date').textContent = `📅 오늘 날짜: ${new Date().toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })}`;
-
-        // 팝업창 닫기 기능
         document.getElementById('close-popup').addEventListener('click', function() {
             const popup = document.getElementById('home-popup');
             popup.style.opacity = '0';
